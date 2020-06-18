@@ -1,9 +1,12 @@
+#Import modules
 import os
 import csv
 import sys
 
+#Open file
 budget_data = os.path.join('..', 'Resources','budget_data.csv')
 
+#Read .csv file
 with open(budget_data) as budget_data_csv:
     reader = csv.reader(budget_data_csv, delimiter=",")
     row_count = 0
@@ -27,6 +30,8 @@ with open(budget_data) as budget_data_csv:
                 month_year2 = row[0]
         except ValueError:
             continue
+
+    #Print requested information
     print(f'Financial Analysis')
     print(f'------------------------------')
     print(f'Total Months: {(row_count)-1}')
@@ -37,7 +42,7 @@ with open(budget_data) as budget_data_csv:
         
    
 
-# Write to text file
+    # Write to text file
     sys.stdout = open("financial-analysis.txt", "w")
     print(f'Financial Analysis')
     print(f'------------------------------')

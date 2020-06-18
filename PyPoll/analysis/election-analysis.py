@@ -1,9 +1,12 @@
+#Import modules
 import os
 import csv
 import sys
 
+#Open file
 election_data = os.path.join('..', 'Resources','election_data.csv')
 
+#Read .csv file
 with open(election_data) as election_data_csv:
     reader = csv.reader(election_data_csv, delimiter=',')
     next(reader)
@@ -12,7 +15,7 @@ with open(election_data) as election_data_csv:
     cand_tally = {}
     winner = ''
     
-    
+    #Find voter total and candidate tallies
     for row in reader:
         row_count +=1
         try:
@@ -23,7 +26,8 @@ with open(election_data) as election_data_csv:
                 cand_tally[last_name] = 1                  
         except ValueError:
             continue
-
+    
+    #Print requested information
     print(f'Election Results')
     print(f'-------------------------')
     print(f'Total Votes:{(row_count)-1}')
@@ -39,7 +43,7 @@ with open(election_data) as election_data_csv:
     print(f'-------------------------')
 
 
-# Write to text file
+    # Write to text file
     sys.stdout = open("election-analysis.txt", "w")
     print(f'Election Results')
     print(f'-------------------------')
@@ -54,6 +58,7 @@ with open(election_data) as election_data_csv:
     print(f'-------------------------')
     print(f'Winner: {winner}')
     print(f'-------------------------')
+    
     sys.stdout.close()
 
 
